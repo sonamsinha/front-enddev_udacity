@@ -15,9 +15,9 @@
     p{
         font-size:0.750em; 
     }
-    /*div.col-2 img.imgResize{
-        height: 55%; width: 55%;
-    }*/
+    div.col-2 img.imgResize{
+        height: 62%; width: 62%;
+    }
     div.col-2 h4.classH4{
         font-size: 0.85em;
     }
@@ -31,12 +31,13 @@
         font-size: 1.12em;
     }
     div.col-2 h4.classH4{
-        font-size:0.81em;
+        font-size:0.45em;
         
     }
     p a.linkClass{
-        font-size: 12px;
+        font-size: 0.630em;
     }
+    
 }
 
 
@@ -51,8 +52,11 @@ h3{ padding-right:20px; padding-left:20px; padding-top: 35px; margin-top:-15px; 
 }
 
 .classH3{padding-left:0px;
-        margin:8px;
-        padding-top:12px;
+        margin-right:8px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-left: -4px;
+        padding-top:14px;
  }
 
 h3.alignH2{text-align:left;
@@ -75,9 +79,13 @@ img.middle {
 
 p{
     padding: 4px;
-    font-size: 1.060em;
-    margin:12px;
+    font-size: 1.020em;
+    margin:auto;
 }
+
+/*.linkClass{ margin-left:0px;
+            margin-right:0px;
+ }*/
 
 ul.style {
     list-style-type: square;
@@ -85,16 +93,18 @@ ul.style {
 
 a{ text-decoration: none;}
 
-/*div.col-2 img.imgResize{
-        height: 100px; width: 100px;
-        max-height: 50%;
-        max-width: 50%;
 
-    }*/
 p.setParagraph ul{margin:8px; }
 
-div.col-2 p{ margin:10px;
-            padding:5px; 
+
+
+div.col-2 p{ margin:5px;
+            padding-left:5px;
+            padding-right: 5px;
+            padding-top: 5px; 
+            padding-left:2px;
+            font-size: 1em;
+            /*word-wrap: break-word; */
 }
 
 
@@ -120,8 +130,6 @@ div.col-2 p{ margin:10px;
 
 }
 
-
-
 .col-1 {
     width: 8.33%;
 }
@@ -129,12 +137,12 @@ div.col-2 p{ margin:10px;
 .col-2 {
     width: 16.66%;
     text-align: center;
-    padding-left:-15px;
     padding-top: 2px;
-
+    margin-right: 10px;
+    padding-right: 0px;
+    /*margin-left: 10px; */
 
 }
-
 .col-3 {
     width: 25%;
 }
@@ -190,7 +198,7 @@ div.scroll-col-12 {
     width: 1195px;
     height: 300px;
     overflow: scroll;
-    padding: 0px;
+    padding: 10px;
     margin: -15px;
 }
 
