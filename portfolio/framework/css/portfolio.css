@@ -7,77 +7,69 @@
 }
 
 
-*{font-family: 'Lato', sans-serif;
+* {
+    font-family: 'Lato', sans-serif;
 }
 
 
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 500px) {
     p{
-        font-size:0.750em; 
+        font-size:0.70em; 
     }
-    div.col-2 img.imgResize{
-        height: 62%; width: 62%;
+    div.col-2 img.img-resize{
+        height: 62%; 
+        width: 62%;
     }
-    div.col-2 h4.classH4{
-        font-size: 0.85em;
+    div.col-2 h4.class-H4{
+        font-size: 0.65em;
     }
-    div.col-6 h1.classH1{
+   
+    div.col-6 h1.class-H1{
         font-size: 1.313em;
     }
-    div.col-12 h2.classH3{
+    div.col-12 h2.class-H3{
         font-size: 1.2em;
     }
-    div.col-2 h3.classH3{
+    div.col-2 h3.class-H3{
         font-size: 1.12em;
     }
-    div.col-2 h4.classH4{
-        font-size:0.45em;
-        
-    }
-    p a.linkClass{
+    div.col-2 p a.link-class{
         font-size: 0.60em;
     }
     
 }
 
 
-body{
-    background-color: #FFEBE3;
+body {
+    background-color: #ffebe3;
 }
 
-h1{ padding-right:20px; padding-left:20px; padding-top: 30px; margin-top:-38px; margin-bottom:0px; color: #140000; text-align: right;
+h1 { 
+    padding: 30px 20px 0px 20px;
+    margin: -38px 0px 0px;
+    color: #140000; 
+    text-align: right;
 }
 
-h3{ padding-right:20px; padding-left:20px; padding-top: 35px; margin-top:-15px; margin-bottom:0px; color: #140000; text-align: right;
+h3 { 
+    padding: 35px 20px 0px;
+    margin: -15px 0px 0px;
+    color: #140000; 
+    text-align: right;
 }
 
-.classH3{padding-left:0px;
-        margin-right:8px;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        margin-left: -4px;
-        padding-top:14px;
+.class-H3 {
+    padding: 14px 0px 0px 0px;
+    margin: 8px 8px 8px -4px;
  }
 
-h3.alignH2{text-align:left;
+h3.align-H2 {
+    text-align:left;
 }
 
-h4:hover{
-    color: blue;
-    text-align: center;
-}
-h4.classH4{ margin-top: 10px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-            margin-left: 5px;}
+a:hover{color: red;}
 
-img.middle {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-} 
-
-p{
+p {
     padding: 4px;
     font-size: 1.020em;
     margin:auto;
@@ -87,20 +79,22 @@ ul.style {
     list-style-type: square;
 }
 
-a{ text-decoration: none;}
+a { 
+    text-decoration: none;
+}
 
+p.set-paragraph ul {
+    margin:8px; 
+}
 
-p.setParagraph ul{margin:8px; }
-
-
-
-div.col-2 p{ margin:5px;
-            padding-left:5px;
-            padding-right: 5px;
-            padding-top: 5px; 
-            padding-left:2px;
-            font-size: 0.80em;
-            /*word-wrap: break-word; */
+div.col-2 p { 
+    margin:5px;
+    padding: 5px 5px 0px 5px;
+    font-size: 0.80em;
+           
+}
+.link-class{
+    word-wrap: break-word;
 }
 
 
@@ -117,11 +111,11 @@ div.col-2 p{ margin:5px;
     padding-top: 10px;
 }
 
-.row1 {
+.row-1 {
     width: 100%;
     margin-bottom: 22px;
-    border-bottom: 6px ridge #FFA791 ;
-    border-right: 6px ridge #FFA791 ;
+    border-bottom: 6px ridge #ffa791;
+    border-right: 6px ridge #ffa791;
     display: flex;
 
 }
@@ -134,11 +128,10 @@ div.col-2 p{ margin:5px;
     width: 16.66%;
     text-align: center;
     padding-top: 2px;
-    margin-right: 10px;
     padding-right: 0px;
-    /*margin-left: 10px; */
-
+    margin-right:10px;
 }
+
 .col-3 {
     width: 25%;
 }
@@ -156,8 +149,9 @@ div.col-2 p{ margin:5px;
     padding: 19px;
 
 }
-.col-6 .thumbnail{ border-radius: 100px; 
-                    border: 5px solid #FFA791;
+.col-6 .thumbnail{ 
+    border-radius: 100px; 
+    border: 5px solid #ffa791;
 }
 
 .col-7 {
@@ -182,15 +176,10 @@ div.col-2 p{ margin:5px;
 
 .col-12 {
     width: 100%;
-    padding-left:0px;
-    padding-right: 14px;
-    padding-bottom: 14px;
-    padding-top: 14px;
-
+    padding: 14px 14px 14px 0px;
 }
 
 div.scroll-col-12 {
-   /* background-color:#FFF0F8;*/
     width: 1195px;
     height: 300px;
     overflow: scroll;
@@ -198,9 +187,11 @@ div.scroll-col-12 {
     margin: -15px;
 }
 
-div.scroll-col-12 :hover{
+div.scroll-col-12 :hover {
     color: brown;
     
 }
 
-div.scroll-col-12 p.setparagraph{ text-align:justify;}
+div.scroll-col-12 p.set-paragraph {
+    text-align:justify;
+}
