@@ -35,7 +35,7 @@
         
     }
     p a.linkClass{
-        font-size: 0.630em;
+        font-size: 0.60em;
     }
     
 }
@@ -83,10 +83,6 @@ p{
     margin:auto;
 }
 
-/*.linkClass{ margin-left:0px;
-            margin-right:0px;
- }*/
-
 ul.style {
     list-style-type: square;
 }
@@ -103,7 +99,7 @@ div.col-2 p{ margin:5px;
             padding-right: 5px;
             padding-top: 5px; 
             padding-left:2px;
-            font-size: 1em;
+            font-size: 0.80em;
             /*word-wrap: break-word; */
 }
 
