@@ -13,7 +13,7 @@ var bio = {
 		 		"location" : "Chicago, Illinois "
 		 	},
 		 	"bioPic" : "images/son.jpg",
-		 	"skills" : ["awesomeness", "Java", "Javascript", "SQL Database", "HTML and CSS"]
+		 	"skills" : ["Awesomeness", "Java", "Javascript", "SQL Database", "HTML and CSS"]
 		 };
 
 var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -71,9 +71,8 @@ var work = { "jobs" :[
 			 	]	
 		   }
 
-//function displayWork(){
+
 work.display = function(){  
-							//for(job in work.jobs){
 						  	work.jobs.forEach(function(job){
 							$("#workExperience").append(HTMLworkStart);
 
@@ -130,7 +129,6 @@ var projects = {
 
 projects.display = function(){
 	projects.projects.forEach(function(project){
-	//for(project in projects.projects){
 		$("#projects").append(HTMLprojectStart);
 
 		var formattedTitle = HTMLprojectTitle.replace("%data%",project.title).replace('#',project.url);
@@ -142,9 +140,7 @@ projects.display = function(){
 
 
 		if(project.images.length > 0){
-			//for(image in projects.projects[project].images){
 			project.images.forEach(function(image){
-				//var formattedImages = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
 				var formattedImages = HTMLprojectImage.replace("%data%",image);
 				$(".project-entry:last").append(formattedImages);
 			});
@@ -186,7 +182,6 @@ var education = {
 			  }
 
 education.display = function(){
-		//for(school in education.schools){
 		education.schools.forEach(function(school){
 			$("#education").append(HTMLschoolStart);
 			var formattedSchoolName = HTMLschoolName.replace("%data%",school.name).replace('#',school.url);
@@ -199,7 +194,6 @@ education.display = function(){
         	$(".education-entry:last").append(formattedSchoolLocation);
         	$(".education-entry:last").append(formattedSchoolDates);
 
-        	//for(major in education.schools[school].majors){
         	school.majors.forEach(function(major){
         		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",major);
             	$(".education-entry:last").append(formattedSchoolMajor);
