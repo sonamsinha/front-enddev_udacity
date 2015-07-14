@@ -1,95 +1,94 @@
 
 
 //BACKGROUND INFORMATION
-var bio = { 
-			  "name" : "Sonam Sinha ",
-		 	  "role" : "Web Developer",
-		 	  "message" : " Welcome ",
-		 	  "contactInfo" : {
-		 		"mobile" : "9936769511",
-		 		"email" : "way2sonam@gmail.com",
-		 		"github" : "sonamsinha",
-		 		"linkedin" : "https://www.linkedin.com/pub/sonam-sinha/88/2a8/aa4",
-		 		"location" : "Chicago, Illinois "
-		 	},
-		 	"bioPic" : "images/son.jpg",
-		 	"skills" : ["Awesomeness", "Java", "Javascript", "SQL Database", "HTML and CSS"]
-		 };
+var bio ={
+				"name" : "Sonam Sinha ",
+				"role" : "Web Developer",
+				"message" : " Welcome ",
+				"contactInfo" : {
+					"mobile" : "9936769511",
+					"email" : "way2sonam@gmail.com",
+					"github" : "sonamsinha",
+					"linkedin" : "https://www.linkedin.com/pub/sonam-sinha/88/2a8/aa4",
+					"location" : "Chicago, Illinois "
+				},
+				"bioPic" : "images/son.jpg",
+				"skills" : ["Awesomeness", "Java", "Javascript", "SQL Database", "HTML and CSS"]
+};
 
-var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
-$("#header").prepend(formattedHeaderRole);
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-$("#header").prepend(formattedName);
+bio.display = function(){
+	var formattedHeaderRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
 
-var formattedContacts =HTMLmobile.replace("%data%", bio.contactInfo.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
-var github = HTMLgithub.replace("%data%", bio.contactInfo.github);
-var location1  = HTMLlocation.replace("%data%", bio.contactInfo.location);
-$("#topContacts").append(formattedContacts)
-	.append(formattedEmail)
-	.append(github)
-	.append(location1);
+	var formattedContacts =HTMLmobile.replace("%data%", bio.contactInfo.mobile);
+	var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
+	var github = HTMLgithub.replace("%data%", bio.contactInfo.github);
+	var location1  = HTMLlocation.replace("%data%", bio.contactInfo.location);
+	$("#topContacts").append(formattedContacts)
+		.append(formattedEmail)
+		.append(github)
+		.append(location1);
 
-$("#footerContacts").append(formattedContacts)
-	.append(formattedEmail)
-	.append(github)
-	.append(location1);
-
-
-var pic= HTMLbioPic.replace("%data%", bio.bioPic);
-$("#header").append(pic);
-var welMsg = HTMLWelcomeMsg.replace("%data%", bio.message);
-$("#header").append(welMsg);
+	$("#footerContacts").append(formattedContacts)
+		.append(formattedEmail)
+		.append(github)
+		.append(location1);
 
 
-if(bio.skills.length > 0){
-	$("#header").append(HTMLskillsStart);
+	var pic= HTMLbioPic.replace("%data%", bio.bioPic);
+	var welMsg = HTMLWelcomeMsg.replace("%data%", bio.message);
+	$("#header").append(pic);
+	$("#header").append(welMsg);
 
-	var formattedSkills= HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkills);
-	var formattedSkills= HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkills);
-	var formattedSkills= HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkills);
-	var formattedSkills= HTMLskills.replace("%data%", bio.skills[3]);
-	$("#skills").append(formattedSkills);
-	var formattedSkills= HTMLskills.replace("%data%", bio.skills[4]);
-	$("#skills").append(formattedSkills);
+
+	if(bio.skills.length > 0){
+		$("#header").append(HTMLskillsStart);
+		bio.skills.forEach(function(skill){
+			var formattedSkills = HTMLskills.replace("%data%",skill);
+			$("#skills").append(formattedSkills);
+		});
 	
-}
+	}
+	$("#header").prepend(formattedHeaderRole);
+	$("#header").prepend(formattedName);
+
+};
+
+bio.display();
 
 //WORK
-var work = { "jobs" :[
-				{
-			 		"employer" : "Neiu Counselling Services ",
-			 		"title" : "Front desk support ",
-			 		"date" : "May,2015 - Present",
-			 		"location" : " Chicago, Illinois ",
-			 		"description" : " Working on Titanium 9 to schedule appointment and maintaining client files. ",
-			 		"url" : "http://www.neiu.edu/university-life/health-and-counseling/counseling-services"
-			 	 }
-			 	]	
-		   }
+var work = { 
+	"jobs" :[
+		{
+			 "employer" : "Neiu Counselling Services ",
+			 "title" : "Front desk support ",
+			 "date" : "May,2015 - Present",
+			 "location" : " Chicago, Illinois ",
+			 "description" : " Working on Titanium 9 to schedule appointment and maintaining client files. ",
+			 "url" : "http://www.neiu.edu/university-life/health-and-counseling/counseling-services"
+		}
+	]	
+};
 
 
 work.display = function(){  
-						  	work.jobs.forEach(function(job){
-							$("#workExperience").append(HTMLworkStart);
+				work.jobs.forEach(function(job){
+					$("#workExperience").append(HTMLworkStart);
 
-							var formattedEmp = HTMLworkEmployer.replace("%data%",job.employer).replace('#',job.url);
-							var formattedWorkTitle = HTMLworkTitle.replace("%data%",job.title);
-							var formattedEmployerTitle = formattedEmp + formattedWorkTitle; 
-							var formattedDate = HTMLworkDates.replace("%data%",job.date);
-							var formattedCity = HTMLworkLocation .replace("%data%",job.location);
-							var formattedDescription = HTMLworkDescription.replace("%data%",job.description);
+					var formattedEmp = HTMLworkEmployer.replace("%data%",job.employer).replace('#',job.url);
+					var formattedWorkTitle = HTMLworkTitle.replace("%data%",job.title);
+					var formattedEmployerTitle = formattedEmp + formattedWorkTitle; 
+					var formattedDate = HTMLworkDates.replace("%data%",job.date);
+					var formattedCity = HTMLworkLocation .replace("%data%",job.location);
+					var formattedDescription = HTMLworkDescription.replace("%data%",job.description);
 
-							$(".work-entry:last").append(formattedEmployerTitle);
-							$(".work-entry:last").append(formattedDate );
-							$(".work-entry:last").append(formattedCity );
-							$(".work-entry:last").append(formattedDescription );    
+					$(".work-entry:last").append(formattedEmployerTitle);
+					$(".work-entry:last").append(formattedDate );
+					$(".work-entry:last").append(formattedCity );
+					$(".work-entry:last").append(formattedDescription );    
 	
-						});
-}
+				});
+};
 
 work.display();
 
@@ -125,7 +124,7 @@ var projects = {
             ]
         }
     ]
-}
+};
 
 projects.display = function(){
 	projects.projects.forEach(function(project){
@@ -146,31 +145,30 @@ projects.display = function(){
 			});
 		}	
 	});	
-}
+};
 
 projects.display();
 
 //EDUCATION
 var education = { 
 		"schools" :[
-					{ 
-						"name" : "Banaras Hindu University ",
-						"degree": "Bachelors Of Science(Botany hons.)",
-						"graduation" : "2011 ",
-						"majors": ["Botany "],
-						"location" : "Varanasi, Uttar Pradesh, India",
-						"url" : "http://www.bhu.ac.in/"
-					},
-					{
-						"name" : "Northeastern Illinois University ",
-						"degree" : "Bachelors Of Computer Science",
-						"graduation" : "2014 - present ",
-						"majors": ["Information Technology "],
-						"location" : "Chicago, Illinois",
-						"url" :"http://www.neiu.edu/"
+				{ 
+					"name" : "Banaras Hindu University ",
+					"degree": "Bachelors Of Science(Botany hons.)",
+					"graduation" : "2008 - 2011 ",
+					"majors": ["Botany "],
+					"location" : "Varanasi, Uttar Pradesh, India",
+					"url" : "http://www.bhu.ac.in/"
+				},
+				{
+					"name" : "Northeastern Illinois University ",
+					"degree" : "Bachelors Of Computer Science",
+					"graduation" : "2014 - present ",
+					"majors": ["Information Technology "],						"location" : "Chicago, Illinois",
+					"url" :"http://www.neiu.edu/"
 
-					}
-				  ] ,
+				}
+		],
 		"onlineCourses" :[
 					{
 						"title" : "Front end web developer ",
@@ -178,8 +176,8 @@ var education = {
 						"dates" : "May, 2015",
 						"url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
 					}
-				  ]
-			  }
+		]
+};
 
 education.display = function(){
 		education.schools.forEach(function(school){
@@ -202,19 +200,19 @@ education.display = function(){
 		
 		if (education.onlineCourses.length > 0) {
 
-			for(olCourses in education.onlineCourses){
-				var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[olCourses].title).replace('#', education.onlineCourses[olCourses].url);
-				var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[olCourses].school);
-            	var formattedDates = HTMLonlineDates.replace("%data%", education.onlineCourses[olCourses].dates);	
+			/*for(olCourses in education.onlineCourses){*/
+			education.onlineCourses.forEach(function(olCourses){
+				var formattedTitle = HTMLonlineTitle.replace("%data%",olCourses.title).replace('#',olCourses.url);
+				var formattedOnlineSchool = HTMLonlineSchool.replace("%data%",olCourses.school);
+            	var formattedDates = HTMLonlineDates.replace("%data%",olCourses.dates);	
             	$(".education-entry:last").append(HTMLonlineClasses);
-
 				$(".education-entry:last").append(formattedTitle + formattedOnlineSchool);
 				$(".education-entry:last").append(formattedDates);
 				$(".education-entry:last").append('<br>');
-			}
+			});
 		}
 
-}
+};
 
 education.display(); 	
 
