@@ -101,4 +101,3 @@ var enemyD = new Enemy();
 var allEnemies = [enemyA, enemyB, enemyC, enemyD];
 
 var player = new Player();
-
