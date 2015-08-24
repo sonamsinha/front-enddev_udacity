@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt){
 
 }
 
-//Reset the enemy position
+//Reset the enemy's position
 Enemy.prototype.reset = function(){
     var minEnemyPos = this.xPos[0];
     this.x = minEnemyPos;
@@ -59,7 +59,7 @@ var Player = function(){
     this.y = 400;
 }
 
-//Updates the player position 
+//Update the player's position 
 Player.prototype.update = function(){
     if(this.ctlKey === 'left' && this.x > 0){ 
 
@@ -83,7 +83,7 @@ Player.prototype.update = function(){
 
 
 }
-// Reset the player position
+// Reset the player's position
 Player.prototype.reset = function(){
     this.x = 200;
     this.y = 400;
