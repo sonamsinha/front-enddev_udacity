@@ -1,6 +1,12 @@
 
+//Enemy class
+
 var Enemy = function(){
+
+    // Loads the enemy image on the screen
     this.sprite = 'images/enemy-bug.png';
+
+    //Sets the enemy initial location
     this.xPos = [-105, 655];
     this.yPos = [70, 150, 240];
     this.speedRange = [200, 300, 550];
@@ -8,6 +14,7 @@ var Enemy = function(){
     this.reset();
 }
 
+// Update the enemy's position, required method for game
 Enemy.prototype.update = function(dt){
 
      var maxEnemyPos = this.xPos[1];
@@ -26,6 +33,7 @@ Enemy.prototype.update = function(dt){
 
 }
 
+//Reset the enemy position
 Enemy.prototype.reset = function(){
     var minEnemyPos = this.xPos[0];
     this.x = minEnemyPos;
@@ -34,28 +42,36 @@ Enemy.prototype.reset = function(){
 
 }
 
+// Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 
+// Player class
 var Player = function(){
+
+    //Loads the player image on the screen
     this.sprite = 'images/char-princess-girl.png';
+
+    //Set the player initial location
     this.x = 200;
     this.y = 400;
 }
 
+//Updates the player position 
 Player.prototype.update = function(){
     if(this.ctlKey === 'left' && this.x > 0){ 
+
         this.x = this.x - 101;
      
-    }else if(this.ctlKey === 'right' && this.x != 400){
+    }else if(this.ctlKey === 'right' && this.x < 400){
         this.x = this.x + 101;
     
     }else if(this.ctlKey === 'up'){
         this.y = this.y - 83;
      
-    }else if (this.ctlKey === 'down' && this.y != 400){
+    }else if (this.ctlKey === 'down' && this.y < 400){
         this.y = this.y + 83;
     }
     this.ctlKey = null;
@@ -67,13 +83,14 @@ Player.prototype.update = function(){
 
 
 }
-
+// Reset the player position
 Player.prototype.reset = function(){
     this.x = 200;
     this.y = 400;
 
 }
 
+// Input handler for player
 Player.prototype.handleInput = function(e){
     this.ctlKey = e;    
 }
@@ -83,6 +100,8 @@ Player.prototype.render = function(){
 }
 
 
+ // listens for key presses and sends the keys to 
+// Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
@@ -94,6 +113,7 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+// Instantiate enemies and player objects 
 var enemyA = new Enemy();
 var enemyB = new Enemy()
 var enemyC = new Enemy();
