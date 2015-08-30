@@ -70,22 +70,7 @@ var Engine = (function(global) {
         main();
     }
 
-   /* function checkCollision(){
-        var PlayerX = this.x;
-        var PlayerY = this.y;
-
-        allEnemies.forEach(function(enemy){
-            var enemyX = enemy.x;
-            var enemyY = enemy.y;
-            if(playerY >= enemyY - 20 && playerY <= enemyY + 20){
-                if(playerX >= enemyX - 20 && playerX <= enemyX + 20){
-                    this.reset();
-                    console.log("You Lose");
-                }
-            } 
-        });
-
-    }*/
+   
 
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how

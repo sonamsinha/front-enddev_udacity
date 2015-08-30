@@ -12,7 +12,7 @@ var Enemy = function(){
     this.speedRange = [200, 300, 550];
 
     this.reset();
-}
+};
 
 // Update the enemy's position, required method for game
 Enemy.prototype.update = function(dt){
@@ -31,7 +31,7 @@ Enemy.prototype.update = function(dt){
         }
     }
 
-}
+};
 
 //Reset the enemy's position
 Enemy.prototype.reset = function(){
@@ -40,12 +40,12 @@ Enemy.prototype.reset = function(){
     this.y = this.yPos[Math.floor(Math.random() * this.yPos.length)];
     this.speed = Math.floor(Math.random() * (this.speedRange[2] - this.speedRange[0])) + this.speedRange[0];
 
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 
 // Player class
@@ -57,47 +57,43 @@ var Player = function(){
     //Set the player initial location
     this.x = 200;
     this.y = 400;
-}
+};
 
 //Update the player's position 
 Player.prototype.update = function(){
-    if(this.ctlKey === 'left' && this.x > 0){ 
-
+    if (this.ctlKey === 'left' && this.x > 0){ 
         this.x = this.x - 101;
-     
-    }else if(this.ctlKey === 'right' && this.x < 400){
+    } else if(this.ctlKey === 'right' && this.x < 400){
         this.x = this.x + 101;
-    
-    }else if(this.ctlKey === 'up'){
+    } else if(this.ctlKey === 'up'){
         this.y = this.y - 83;
-     
-    }else if (this.ctlKey === 'down' && this.y < 400){
+    } else if (this.ctlKey === 'down' && this.y < 400){
         this.y = this.y + 83;
     }
     this.ctlKey = null;
     
     //If player has reached water, reset
-    if(this.y < 40){
+    if (this.y < 40){
         this.reset();
     }
+};
 
 
-}
 // Reset the player's position
 Player.prototype.reset = function(){
     this.x = 200;
     this.y = 400;
 
-}
+};
 
 // Input handler for player
 Player.prototype.handleInput = function(e){
     this.ctlKey = e;    
-}
+};
 
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 
  // listens for key presses and sends the keys to 
@@ -114,6 +110,7 @@ document.addEventListener('keyup', function(e) {
 });
 
 // Instantiate enemies and player objects 
+
 var enemyA = new Enemy();
 var enemyB = new Enemy()
 var enemyC = new Enemy();
