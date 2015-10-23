@@ -33,3 +33,5 @@
 * Pulling out unnecessary JS operations out of for loops optimized the loops in views/js/main.js.
 
 * Debouncing: scroll events were debounced to decouple the animations and only repaint when required.
+
+![alt text](
