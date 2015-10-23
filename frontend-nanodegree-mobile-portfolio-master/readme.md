@@ -40,3 +40,12 @@
 ![alt text](https://github.com/sonamsinha/front-enddev_udacity/blob/master/frontend-nanodegree-mobile-portfolio-master/frameRateImages/frameRate2.png)
 * *Computational efficiency for pizza.html*
 ![alt text](https://github.com/sonamsinha/front-enddev_udacity/blob/master/frontend-nanodegree-mobile-portfolio-master/frameRateImages/frameRate1.png)
+
+### Further areas of improvement
+- Browser caching, configured server-side, could have reduced page loading time.
+- Reduce the size of the above-the-fold content, to priortize the visible content.
+
+### Resources
+- [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+- [Optimize CSS Delivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
+- [Leaner, Meaner, Faster Animations with requestAnimationFrame](http://www.html5rocks.com/en/tutorials/speed/animations/)
