@@ -34,4 +34,4 @@
 
 * Debouncing: scroll events were debounced to decouple the animations and only repaint when required.
 
-![alt text](
+![alt text](https://github.com/sonamsinha/front-enddev_udacity/blob/master/frontend-nanodegree-mobile-portfolio-master/frameRateImages/frameRate1.png)
