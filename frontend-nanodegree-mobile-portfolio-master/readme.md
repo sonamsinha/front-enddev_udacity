@@ -37,6 +37,6 @@
 ###Framerate Timelines: 
   Saved JSON timelines and screenshots for pizza.html is located in framerateImages folder and dsiplayed below
 * *Framerate for pizza.html *
-![alt text](https://github.com/sonamsinha/front-enddev_udacity/blob/master/frontend-nanodegree-mobile-portfolio-master/frameRateImages/frameRate1.png)
-* *Computational efficiency for pizza.html*
 ![alt text](https://github.com/sonamsinha/front-enddev_udacity/blob/master/frontend-nanodegree-mobile-portfolio-master/frameRateImages/frameRate2.png)
+* *Computational efficiency for pizza.html*
+![alt text](https://github.com/sonamsinha/front-enddev_udacity/blob/master/frontend-nanodegree-mobile-portfolio-master/frameRateImages/frameRate1.png)
