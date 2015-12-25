@@ -15,27 +15,6 @@
         	margin: 0;
         }
 
-        /*html{
-			height: 100%;
-		}
-		body{
-			height:100%;
-			margin: 0;
-			padding: 0;
-			background-color: #CCC;
-		}
-		#map-canvas{ 
-			  	  height: 100%;
-				  width: 100%; 
-				  margin-left: auto;
-		          margin-right: auto;
-				  border-right-width: 2px;
-				  border-right-color: #ffffff;
-				  border-right-style: solid;
-				  border-left-width: 2px;
-				  border-left-color: #ffffff;
-				  border-left-style: solid;
-		}*/
         
         #search-box {
 			position: absolute;
@@ -43,17 +22,27 @@
 		}
 
 		#search-nav {
-			width: 280px;
+			width: 266px;
 			max-height: :549px;
-			background-color: gray;
-			border: solid 1.5px gray;
+			background-color: white;
+			border: solid 2px orange;
 			overflow: hidden;
 		}
-
+		ul{
+			list-style-type: none;
+		}
 		#scrollList {
 			max-height: 480px;
 			overflow: scroll;
 			margin: 0 5px;
+		}
+
+		#scrollList a{
+			text-decoration: none;
+		}
+
+		li:hover {
+			color: orange;
 		}
 
 		#arrow {
@@ -76,13 +65,13 @@
 		    bottom: 0;
 		    float:right;
 		} 
-		#reset,
-		#reset:focus {
+		#resetMap,
+		#resetMap:focus {
 		    height: 75px;
 		    width: 75px;
-		    float: right;
+		    float: left;
 		    margin: 0 10px 15px 0;
-		    border-radius: 50%;
+		    border-radius: 40%;
 		    border: solid white 2px;
 		    background-color: orange;
 		    opacity: 0.9;

@@ -8,69 +8,40 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp' +
-      '&signed_in=false&callback=initialize" ></script>
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false" ></script>-->
 </head>
 <body>
 	<div class="grid">
 		<div id="map-canvas"></div>
 			<img src= "images/banner.png" alt= "banner">
-			<!--<h3>Chicago Restaurants</h3>-->
-			
 					<div id = "search-box" class="row">
 						<div id = "search-nav" class="col-md-12">			
-							<form id="search-form" data-bind="submit:search">
-								<input id ="searchInput"  class= "form-control" width= "200" placeholder = "Search for restaurants..." type="input" data-bind = "textInput: query" autocomplete="off" autofocus/>
-									<button id="search-button" type="Submit">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-									<p id = "summary">
-										<span data-bind = "text: totalRestaurants"></span> <b>Restaurants</b>
-									</p>   <!--TO DO-->
+							<form id="search-form">
+								<input id ="searchInput"  class= "form-control" width= "170" placeholder = "Search for restaurants..." type="search" data-bind = "textInput: query, valueUpdate: 'keydown'" autocomplete="off" autofocus/>
 							</form>
-							<div id = "scrollList"> 
-								<ul data-bind = "info: {placeName : 'marker', foreach: markers}">
+							<div id = "scrollList">  
+								<ul data-bind = "template: {name : 'pointer', foreach: markers}">
 								</ul>
-								<script type = "text/html" id = "marker">
+								<script type = "text/html" id = "pointer">
 									<div data-bind="visible: visible">
 										<a href="#" data-bind="attr:{id: id}">
 											<li>
 												<em data-bind="text: title"></em>
-												<p> data-bind="text: address"></p>												
+												<p data-bind="text: address"></p>												
 											</li>
 										</a>
 									</div>
-								</script>   <!--TO DO-->
+								</script>
 							</div>
 						</div>
 					</div>
-				<div id = "arrow-container" >
-					<!--<img id = "arrow" src="image/#" alt="arrow-image">  -->
-				</div>
-
 				<div class = "reset">
 					<button id= "resetMap">Reset Map Zoom</button>
 				</div>
-				<!--<div class = "modal">
-					<div class = "modal-images">
-						<img id = "exit-modal" src = "image/exit.jpg" alt = "Exit button image">
-						<div class = "flickr-image-cont" onload = "scrollForward"></div>
-						<img id = "right-arrow" src="image/right-arrow.png" alt = "Right arrow image">
-						<img id = "left-arrow" src="image/left-arrow.png" alt = "Left arrow image">
-					</div>
-				</div>  -->
 	</div>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/library/knockout-3.3.0.js"></script>
 	<script type="text/javascript" src="js/map.js"></script>
-	<!-- <script type="text/javascript" src="js/flickr.js"></script> --> <!-- TO DO -->
-	<!--
-	<script type="text/javascript">
-		$(window).resize(function(){
-			var windowHeight = $('.grid').height();
-			$('#map-canvas').css('height', windowHeight);
-
-		}).resize();
-	</script> -->
 </body>
 </html>

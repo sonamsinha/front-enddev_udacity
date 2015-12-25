@@ -1,236 +1,197 @@
-var map;
-var markersArray = [];
-
-function loadScript()
-{
-	var script = document.createElement('script');
-	script.type = "text/javascript";
-	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
-      '&signed_in=false&callback=initialize';
-	//script.src = "http://maps.googleapis.com/maps/api/js?key=&sensor=false&callback=initialize";
-	document.body.appendChild(script);
-} 
-
-window.onload = loadScript; 
-
-function initialize()
-{
-	var mapProp = {
-		center: new google.maps.LatLng(41.903507, -87.652960),
-		zoom:14,
-		zoomControl:true,
-		disableDefaultUI:true,
-		mapTypeControl:false
-	};
-  
-	map = new google.maps.Map(document.getElementById("map-canvas"),mapProp);
-	
-	//Helps to keep the map centered to the browser's window
-	google.maps.event.addDomListener(window, "resize", function() {
-   		var center = map.getCenter();
-   		google.maps.event.trigger(map, "resize");
-   		map.setCenter(center); 
-   	});
-
-	setMarkers(markers);
-
-	settingMap();
-
-	function reset() {  						//TO DO
-		var windowSize = $(window).width();
-		if(windowSize <= 1080) {
-			map.setZoom(14);
-			map.setCenter(mapProp.center);
-
-		}
-		if (windowSize > 1080) {
-			map.setZoom(14);
-			map.setCenter(mapProp.center);
-		}
-	}
-
-	$("#resetMap").click(function() {
-		reset();
-	});
-	/*$(window).resize(function() {
-		reset();
-	});*/
-}
-
 // Different restaurants with their information
 //Markers
 
- var markers = [
+var markers = [
 	{   
-    title: "Alinea",
-    lat: 41.913427, 
-    lng: -87.648083,
-    address: "1723 Halsted St,Chicago,IL 60614",
-    url: "website.alinearestaurant.com",
-    id: "nav0",
-    visible: ko.observable(true),
-    check: true,
-    depth: 95
+		rank:1,
+    	title: "Alinea",
+    	lat: 41.913427, 
+    	lng: -87.648083,
+    	address: "1723 Halsted St,Chicago,IL 60614",
+    	url: "website.alinearestaurant.com",
+    	id: "nav0",
+    	visible: ko.observable(true),
+    	check: true,
+    	depth: 95,
+    	flickr_id:'23752021172',
+    	flickr_url:'',
+    	holdMarker:''
     },
     {
-    title: "Girl & the Goat",
-    lat: 41.884109, 
-    lng: -87.647976,
-    address: "809 W Randolph St,Chicago,IL 60607",
-    url: "girlandthegoat.com",
-    id: "nav1",
-    visible: ko.observable(true),
-    check: true,
-    depth: 60
+    	rank:2,
+    	title: "Girl & the Goat",
+    	lat: 41.884109, 
+    	lng: -87.647976,
+    	address: "809 W Randolph St,Chicago,IL 60607",
+    	url: "girlandthegoat.com",
+    	id: "nav1",
+    	visible: ko.observable(true),
+    	check: true,
+    	depth: 60,
+    	flickr_id:'23233582323',
+    	flickr_url:'',
+    	holdMarker:''
     },
     {
-    title: "The Purple Pig",
-    lat: 41.891163, 
-    lng: -87.624687,
-    address: "500 N Michigan Ave,Chicago,IL 60611",
-    url: "thepurplepigchicago.com",
-    id: "nav2",
-    visible: ko.observable(true),
-    check: true,
-    depth: 145
+    	rank:3,
+	    title: "The Purple Pig",
+	    lat: 41.891163, 
+	    lng: -87.624687,
+	    address: "500 N Michigan Ave,Chicago,IL 60611",
+	    url: "thepurplepigchicago.com",
+	    id: "nav2",
+	    visible: ko.observable(true),
+	    check: true,
+	    depth: 145,
+	    flickr_id:'23492469409',
+    	flickr_url:'',
+    	holdMarker:''
     },
     {
-    title: "Avec Restaurant",
-    lat: 41.884202, 
-    lng: -87.643388,
-    address: "615 W Randolph St,Chicago,IL 60661",
-    url: "avecrestaurant.com",
-    id: "nav3",
-    visible: ko.observable(true),
-    check: true,
-    depth: 128
+    	rank:4,
+	    title: "Avec Restaurant",
+	    lat: 41.884202, 
+	    lng: -87.643388,
+	    address: "615 W Randolph St,Chicago,IL 60661",
+	    url: "avecrestaurant.com",
+	    id: "nav3",
+	    visible: ko.observable(true),
+	    check: true,
+	    depth: 128,
+	    flickr_id:'23233577583',
+    	flickr_url:'',
+    	holdMarker:''
     },
     {
-    title: "Wildfire Chicago",
-    lat: 41.893786, 
-    lng: -87.633498,
-    address: "159 W Erie St. Chicago,IL 60654",
-    url: "wildfirerestaurant.com",
-    id: "nav4",
-    visible: ko.observable(true),
-    check: true,
-    depth: 150 
+    	rank:5,
+	    title: "Wildfire Chicago",
+	    lat: 41.893786, 
+	    lng: -87.633498,
+	    address: "159 W Erie St. Chicago,IL 60654",
+	    url: "wildfirerestaurant.com",
+	    id: "nav4",
+	    visible: ko.observable(true),
+	    check: true,
+	    depth: 150,
+	    flickr_id:'23492469649',
+    	flickr_url:'',
+    	holdMarker:''
     },
     {
-    title: "The Gage",
-    lat: 41.881299, 
-    lng: -87.624942,
-    address: "24 S Michigan Ave, Chicago, IL 60603",
-    url: "viewmenu.com",
-    id: "nav5",
-    visible: ko.observable(true),
-    check: true,
-    depth: 530
-    },
+    	rank:6,
+	    title: "The Gage",
+	    lat: 41.881299, 
+	    lng: -87.624942,
+	    address: "24 S Michigan Ave, Chicago, IL 60603",
+	    url: "viewmenu.com",
+	    id: "nav5",
+	    visible: ko.observable(true),
+	    check: true,
+	    depth: 530,
+	    flickr_id:'23777889751',
+    	flickr_url:'',
+    	holdMarker:''
+    }
 ];
 
-//Directs the visibility of the markers on the map
-function settingMap() {
-  for (var i = 0; i < markers.length; i++) {
-    if(markers[i].check === true) {
-    markers[i].holdMarker.setMap(map);
-    } else {
-    markers[i].holdMarker.setMap(null);
-    }
-  }
-}
+var infowindow = null;
 
 
-var images = [
-	{
-		url: 'images/alinea.png',
-		size: new google.maps.Size(273,124),
-		origin: new google.maps.Point(0,0),
-		anchor: new google.maps.Point(189,116)	
-	},
-	{
-		url: 'images/girl&goat.png',
-		size: new google.maps.Size(273,124),
-		origin: new google.maps.Point(0,0),
-		anchor: new google.maps.Point(103,102)
-	},
-	{
-		url: 'images/purplepig.png',
-		size: new google.maps.Size(273,124),
-		origin: new google.maps.Point(0,0),
-		anchor: new google.maps.Point(192,148)
-	},
-	{
-		url: 'images/avec.png',
-		size: new google.maps.Size(273,124),
-		origin: new google.maps.Point(0,0),
-		anchor: new google.maps.Point(46,109)
-	},
-	{
-		url: 'images/wildfire.png',
-		size: new google.maps.Size(273,124),
-		origin: new google.maps.Point(0,0),
-		anchor: new google.maps.Point(82,125)	
-	},
-	{
-		url: 'images/thegage.png',
-		size: new google.maps.Size(273,124),
-		origin: new google.maps.Point(0,0),
-		anchor: new google.maps.Point(117,134)	
-	}
-]; 
+jQuery(function(){
+	// Ajax call being made to flickr
+	$.ajax({
+		url: "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=5cbf9bcd91446335996a28e00685735d&user_id=138689695%40N05&format=json",
+		dataType: 'jsonp',
+		jsonp: 'jsoncallback',
+		success: displayImages,
+		error: displayError
+	});
 
-//var z-Index = [100, 100, 110, 113, 118, 115];
+	//Function to display display images from flickr
+	function displayImages(data){
+		//Loop through the results in the JSON array of data. The 'data.photos.photo'
+		$.each(data.photos.photo, function(i,item){
 
-// TO DO- Get and add  
-// Get street view image for every particular marker
+		//Reads in each photo id.
+		var photoID = item.id;
 
+		//Gets the url for the images
+		var photoURL = "http://farm" + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
 
-//Set the markers on the map 
-//Set the information window for each marker
-function setMarkers(marker) {
-
-	//alert(" Length of Images "+images.length); // to do
-
-	/*for(j=0; j<images.length; j++){
-		//alert(" URL of Image = "+images[j].url);
-	}*/
-
-	for (i = 0; i<marker.length;i++) {
-		marker[i].holdMarker = new google.maps.Marker({
-			position: new google.maps.LatLng(marker[i].lat, marker[i].lng),
-			map:map,
-			/*icon: {
-		    	url: 'images/alinea.png',
-		    	size: new google.maps.Size(150,60),
-		    	origin: new google.maps.Point(0,0),
-		    	anchor: new google.maps.Point(189,116)
-	    	},*/
-	    	icon: images[i],
-			title: marker[i].title,
-			zIndex: marker[i].depth
+		htmlString = '<img src="' + photoURL + '">';
+			jQuery.each(markers, function(i, m){
+				if(m.flickr_id == item.id){
+					m.flickr_url = htmlString;
+				}
+			});	
 		});
-				marker[i].contentString = '<strong>' + marker[i].title + '</strong><br><p>'
-				+ marker[i].address + '<br>' + '<br></p><a class="weblinks" href="http://' +
-				marker[i].url + '"target=_blank">' + marker[i].url + '</a>';
 
-				var infoWindow = new google.maps.InfoWindow({
-					content: markers[i].contentString
-				})
+		mapcode();
+	}
+	//Function to display error when unable to contact with flickr server
+	function displayError(){
+		alert(" Could not contact flickr server.Check your api key. Images will not be loaded !! ");
+		mapcode();
+	}
 
-		//Binds infoWindows content to each marker
-		/*marker[i].contentString = '<strong>' + marker[i].title + '</strong><br><p>'
-			+ marker[i].address + '<br>' + '<br></p><a class="weblinks" href="http://' +
-			marker[i].url + '"target=_blank">' + marker[i].url + '</a>';
+	var map;
+	//Initialize the map and its contents
+	function mapcode(){
+		var start_marker = new google.maps.LatLng(markers[0]['lat'], markers[0]['lng']);
+		var mapOptions = {
+			center: start_marker,
+			streetViewControl: false,
+			panControl: false,
+			maxZoom: 17,
+			zoom: 13,
+			zoomControl: true,
+			zoomControlOptions: {
+				style:google.maps.ZoomControlStyle.SMALL
+			}
+		};
+		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-		var infoWindow = new google.maps.InfoWindow({
-			content: markers[i].contentString
-		})*/
+		var infowindow = new google.maps.InfoWindow({
+			content: ''
+		});
 
-		google.maps.event.addListener(marker[i].holdMarker, 'click', (function(location, i) {
-			return function() {
-				infoWindow.setContent(marker[i].contentString);
-				infoWindow.open(map,this);
+		//Reset map on click handler and
+    	//when window resize conditionals are met
+		$("#resetMap").click(function() {
+			console.log(" Resetting now ");
+			var windowSize = $(window).width();
+			if(windowSize <= 1080) {
+				map.setZoom(13);
+				map.setCenter(mapOptions.center);
+
+			}
+			if (windowSize > 1080) {
+				map.setZoom(13);
+				map.setCenter(mapOptions.center);
+			}
+		});
+
+		// Iterating over every marker, and assigning position and marker details to it.
+		jQuery.each(markers, function(i, m){
+			var start_marker = new google.maps.LatLng(41.903507, -87.652960);
+
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(m.lat, m.lng),
+				bounds: true,
+				id: 'mk_' + m.rank,
+				letter : m.index,
+				map:map,
+				title:m.name
+			});
+
+			m.holdMarker = marker;
+
+			//Click marker to view infoWindow
+            //zoom in and center location on click
+			google.maps.event.addListener(marker, 'click', function(){
+				infowindow.close();
+				infowindow.setContent(contentString);
+				infowindow.open(map, marker);
 				var windowSize = $(window).width();
 				if(windowSize <= 1080) {
 					map.setZoom(18);
@@ -238,11 +199,81 @@ function setMarkers(marker) {
 				if(windowSize > 1080) {
 					map.setZoom(16);
 				}
-				map.setCenter(location.getPosition());
-				// TO DO- ADD pic
-			}
-		})(marker[i].holdMarker, i));
+			});
+
+			// Opens info window when the link the scroll list is clicked
+			var searchNav = $('#nav' + i);
+        		searchNav.click((function(marker, i) {
+		          return function() {
+		            infowindow.setContent(contentString);
+		            infowindow.open(map,marker);
+		            map.setZoom(16);
+		            map.setCenter(marker.getPosition());
+		          }; 
+        	})(m.holdMarker, i));
+
+			var contentString = '<div id="content">'+
+	                  '<div id="siteNotice">'+
+	                  '</div>'+
+	                  '<h1 id="firstHeading" class="firstHeading">'+ m.title + '</h1>'+
+	                  '<div id="bodyContent">'+ 
+	                  '<br><strong>' + m.address + '</strong><br>' +
+	                  '<br><a class="weblinks" href="http://' +
+						m.url + '"target=_blank">' + m.url + '</a>' +
+					  '<br>' +
+	                  m.flickr_url +
+	                  '</div>'+
+	                  '</div>';
+		});
 	}
-}
+
+	//Query through the different locations from nav bar with knockout.js
+    //only display markers and nav elements that match query result
+	var viewModel = {
+	    query: ko.observable(''),
+	};
+
+	viewModel.markers = ko.dependentObservable(function() {
+	    var self = this;
+	    var search = self.query().toLowerCase();
+	    return ko.utils.arrayFilter(markers, function(pointer) {
+	    if (pointer.title.toLowerCase().indexOf(search) >= 0) {
+	            pointer.check = true;
+	            return pointer.visible(true);
+	        } else {
+	            pointer.check = false;
+	            settingMap();
+	            return pointer.visible(false);
+	        }
+	    });       
+	}, viewModel);
+	ko.applyBindings(viewModel);
 
 
+	//show $ hide markers in sync with nav
+	$("#searchInput").keyup(function() {
+		var value = $(this).val(); 
+		if(!value){
+			settingMap(value);	
+		}
+	});
+
+	//Determines if markers should be visible
+	//This function is passed in the knockout viewModel function
+	function settingMap(value){
+		console.log(" Value being searched is "+value);
+
+		for (var i = 0; i < markers.length; i++) {
+		    if(markers[i].check === true) {
+		    	markers[i].holdMarker.setMap(map);
+		    	var latLng = new google.maps.LatLng(markers[i].lat, markers[i].lng);
+		    	map.panTo(latLng);
+		    	map.setZoom(17);
+		    	
+		    } else {
+		    	markers[i].holdMarker.setMap(null);
+		    	
+		    }
+	  	}
+	}
+});
