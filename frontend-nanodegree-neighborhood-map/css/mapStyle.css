@@ -14,8 +14,9 @@
         	position: absolute; 
         	margin: 0;
         }
-
-        
+        a {
+        	text-decoration: none;
+        }
         #search-box {
 			position: absolute;
 			z-index: 3;

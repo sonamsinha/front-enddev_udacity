@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false" ></script>-->
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 </head>
 <body>
 	<div class="grid">
 		<div id="map-canvas"></div>
 			<img src= "images/banner.png" alt= "banner">
 					<div id = "search-box" class="row">
-						<div id = "search-nav" class="col-md-12">			
+						<div id = "search-nav" class="col-md-12">
 							<form id="search-form">
 								<input id ="searchInput"  class= "form-control" width= "170" placeholder = "Search for restaurants..." type="search" data-bind = "textInput: query, valueUpdate: 'keydown'" autocomplete="off" autofocus/>
 							</form>
-							<div id = "scrollList">  
+							<p id="show" data-bind="click: showList"></p>
+							<div id = "scrollList">
 								<ul data-bind = "template: {name : 'pointer', foreach: markers}">
 								</ul>
 								<script type = "text/html" id = "pointer">
@@ -28,20 +28,20 @@
 										<a href="#" data-bind="attr:{id: id}">
 											<li>
 												<em data-bind="text: title"></em>
-												<p data-bind="text: address"></p>												
+												<p data-bind="text: address"></p>
 											</li>
 										</a>
 									</div>
 								</script>
 							</div>
+							<p id="hide" data-bind="click: hideList">Hide List</p>
 						</div>
 					</div>
 				<div class = "reset">
-					<button id= "resetMap">Reset Map Zoom</button>
+					<button data-bind="click: resetMap" id="resetMap">Reset Map Zoom</button>
 				</div>
 	</div>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="js/library/knockout-3.3.0.js"></script>
-	<script type="text/javascript" src="js/map.js"></script>
+	<script src="js/library/knockout-3.3.0.js"></script>
+	<script async src="js/map.js"></script>
 </body>
 </html>

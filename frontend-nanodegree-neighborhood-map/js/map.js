@@ -1,11 +1,14 @@
 // Different restaurants with their information
 //Markers
 
+
+'use strict';
+
 var markers = [
-	{   
+	{
 		rank:1,
     	title: "Alinea",
-    	lat: 41.913427, 
+    	lat: 41.913427,
     	lng: -87.648083,
     	address: "1723 Halsted St,Chicago,IL 60614",
     	url: "website.alinearestaurant.com",
@@ -20,7 +23,7 @@ var markers = [
     {
     	rank:2,
     	title: "Girl & the Goat",
-    	lat: 41.884109, 
+    	lat: 41.884109,
     	lng: -87.647976,
     	address: "809 W Randolph St,Chicago,IL 60607",
     	url: "girlandthegoat.com",
@@ -35,7 +38,7 @@ var markers = [
     {
     	rank:3,
 	    title: "The Purple Pig",
-	    lat: 41.891163, 
+	    lat: 41.891163,
 	    lng: -87.624687,
 	    address: "500 N Michigan Ave,Chicago,IL 60611",
 	    url: "thepurplepigchicago.com",
@@ -50,7 +53,7 @@ var markers = [
     {
     	rank:4,
 	    title: "Avec Restaurant",
-	    lat: 41.884202, 
+	    lat: 41.884202,
 	    lng: -87.643388,
 	    address: "615 W Randolph St,Chicago,IL 60661",
 	    url: "avecrestaurant.com",
@@ -65,7 +68,7 @@ var markers = [
     {
     	rank:5,
 	    title: "Wildfire Chicago",
-	    lat: 41.893786, 
+	    lat: 41.893786,
 	    lng: -87.633498,
 	    address: "159 W Erie St. Chicago,IL 60654",
 	    url: "wildfirerestaurant.com",
@@ -80,7 +83,7 @@ var markers = [
     {
     	rank:6,
 	    title: "The Gage",
-	    lat: 41.881299, 
+	    lat: 41.881299,
 	    lng: -87.624942,
 	    address: "24 S Michigan Ave, Chicago, IL 60603",
 	    url: "viewmenu.com",
@@ -96,16 +99,18 @@ var markers = [
 
 var infowindow = null;
 
+var zoomLevel;
 
 jQuery(function(){
 	// Ajax call being made to flickr
 	$.ajax({
-		url: "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=5cbf9bcd91446335996a28e00685735d&user_id=138689695%40N05&format=json",
-		dataType: 'jsonp',
-		jsonp: 'jsoncallback',
-		success: displayImages,
-		error: displayError
-	});
+		url: "https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=a36150f90dc2aecb37c731964934787f&gallery_id=72157660576099034&format=json&nojsoncallback=1",
+		dataType: 'json',
+		jsonp: 'jsoncallback'
+	})
+	.done(displayImages)
+	.fail(displayError);
+
 
 	//Function to display display images from flickr
 	function displayImages(data){
@@ -118,27 +123,29 @@ jQuery(function(){
 		//Gets the url for the images
 		var photoURL = "http://farm" + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
 
-		htmlString = '<img src="' + photoURL + '">';
+		var htmlString = '<img src="' + photoURL + '">';
 			jQuery.each(markers, function(i, m){
 				if(m.flickr_id == item.id){
 					m.flickr_url = htmlString;
 				}
-			});	
+			});
 		});
 
 		mapcode();
 	}
 	//Function to display error when unable to contact with flickr server
-	function displayError(){
-		alert(" Could not contact flickr server.Check your api key. Images will not be loaded !! ");
+	function displayError(data){
+		alert(" Could not contact flickr server.Check your api key. Images will not be loaded !! "+data);
 		mapcode();
 	}
 
+
 	var map;
+	var mapOptions;
 	//Initialize the map and its contents
 	function mapcode(){
 		var start_marker = new google.maps.LatLng(markers[0]['lat'], markers[0]['lng']);
-		var mapOptions = {
+		mapOptions = {
 			center: start_marker,
 			streetViewControl: false,
 			panControl: false,
@@ -151,25 +158,12 @@ jQuery(function(){
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+		zoomLevel = map.getZoom();
+
 		var infowindow = new google.maps.InfoWindow({
 			content: ''
 		});
 
-		//Reset map on click handler and
-    	//when window resize conditionals are met
-		$("#resetMap").click(function() {
-			console.log(" Resetting now ");
-			var windowSize = $(window).width();
-			if(windowSize <= 1080) {
-				map.setZoom(13);
-				map.setCenter(mapOptions.center);
-
-			}
-			if (windowSize > 1080) {
-				map.setZoom(13);
-				map.setCenter(mapOptions.center);
-			}
-		});
 
 		// Iterating over every marker, and assigning position and marker details to it.
 		jQuery.each(markers, function(i, m){
@@ -177,11 +171,13 @@ jQuery(function(){
 
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(m.lat, m.lng),
+				animation: google.maps.Animation.DROP,
 				bounds: true,
 				id: 'mk_' + m.rank,
 				letter : m.index,
 				map:map,
-				title:m.name
+				title:m.name,
+				zIndex:999
 			});
 
 			m.holdMarker = marker;
@@ -199,6 +195,20 @@ jQuery(function(){
 				if(windowSize > 1080) {
 					map.setZoom(16);
 				}
+				if (marker.getAnimation() !== null) {
+    				marker.setAnimation(null);
+  				} else {
+    				marker.setAnimation(google.maps.Animation.BOUNCE);
+ 				}
+ 				map.setCenter(marker.getPosition());
+			});
+
+			google.maps.event.addListener(map, 'zoom_changed', function(){
+				var currentZoomLevel = map.getZoom();
+				if(currentZoomLevel == zoomLevel){
+					infowindow.close();
+					m.holdMarker.setAnimation(null);
+				}
 			});
 
 			// Opens info window when the link the scroll list is clicked
@@ -209,14 +219,14 @@ jQuery(function(){
 		            infowindow.open(map,marker);
 		            map.setZoom(16);
 		            map.setCenter(marker.getPosition());
-		          }; 
+		          };
         	})(m.holdMarker, i));
 
 			var contentString = '<div id="content">'+
 	                  '<div id="siteNotice">'+
 	                  '</div>'+
 	                  '<h1 id="firstHeading" class="firstHeading">'+ m.title + '</h1>'+
-	                  '<div id="bodyContent">'+ 
+	                  '<div id="bodyContent">'+
 	                  '<br><strong>' + m.address + '</strong><br>' +
 	                  '<br><a class="weblinks" href="http://' +
 						m.url + '"target=_blank">' + m.url + '</a>' +
@@ -231,6 +241,28 @@ jQuery(function(){
     //only display markers and nav elements that match query result
 	var viewModel = {
 	    query: ko.observable(''),
+	    resetMap : function(){
+			var windowSize = $(window).width();
+			if(windowSize <= 1080) {
+				map.setZoom(13);
+				map.setCenter(mapOptions.center);
+
+			}
+			if (windowSize > 1080) {
+				map.setZoom(13);
+				map.setCenter(mapOptions.center);
+			}
+		},
+		showList : function(){
+			$("#scrollList").show();
+			$("#show").html("");
+			$("#hide").html("<a href='#'>Hide List</a>");
+		},
+		hideList : function(){
+			$("#scrollList").hide();
+			$("#show").html("<a href='#'>Show List</a>");
+			$("#hide").html("");
+		}
 	};
 
 	viewModel.markers = ko.dependentObservable(function() {
@@ -245,34 +277,32 @@ jQuery(function(){
 	            settingMap();
 	            return pointer.visible(false);
 	        }
-	    });       
+	    });
 	}, viewModel);
 	ko.applyBindings(viewModel);
 
 
 	//show $ hide markers in sync with nav
 	$("#searchInput").keyup(function() {
-		var value = $(this).val(); 
+		var value = $(this).val();
 		if(!value){
-			settingMap(value);	
+			settingMap(value);
 		}
 	});
 
 	//Determines if markers should be visible
 	//This function is passed in the knockout viewModel function
 	function settingMap(value){
-		console.log(" Value being searched is "+value);
 
-		for (var i = 0; i < markers.length; i++) {
+		for (var i = 0, len = markers.length; i < len; i++) {
 		    if(markers[i].check === true) {
 		    	markers[i].holdMarker.setMap(map);
 		    	var latLng = new google.maps.LatLng(markers[i].lat, markers[i].lng);
 		    	map.panTo(latLng);
 		    	map.setZoom(17);
-		    	
 		    } else {
 		    	markers[i].holdMarker.setMap(null);
-		    	
+
 		    }
 	  	}
 	}
