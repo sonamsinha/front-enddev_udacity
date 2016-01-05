@@ -1,4 +1,5 @@
 ## Project 6: Feed Reader Testing
+#### By: Sonam Sinha
 
 ### Tests
 ##### RSS Feeds:
