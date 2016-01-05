@@ -18,4 +18,3 @@
 
 ### Sources
 * http://jasmine.github.io/2.1/introduction.html
-
