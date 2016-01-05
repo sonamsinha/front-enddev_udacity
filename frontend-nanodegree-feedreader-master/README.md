@@ -4,7 +4,7 @@
 ### How to run the app
   * Download the zip file. 
   * Run the index.html in a browser.
-  * To test, modify(add/delete)some feed information in allFeeds objects in app.js.
+  * To test, modify(add/delete) allFeeds objects in app.js.
 
 ### Tests
 ##### RSS Feeds:
