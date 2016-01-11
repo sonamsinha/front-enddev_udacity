@@ -32,12 +32,12 @@ $(function() {
          * and that the URL is not empty.
          */
          // This test runs a for loop to check whether each feed url is defined or not.
-         it('have urls defined',function() {
-            for(var i in allFeeds) {
+        it('have urls defined',function() {
+            for( var i=0; i<allFeeds.length; i++){
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url.length).not.toBe(0);
             }
-         });
+        });
 
 
         /* A test that loops through each feed
@@ -46,7 +46,7 @@ $(function() {
          */
          // This test runs a for loop to check whether each feed name is defined or not.
         it('have names defined', function() {
-            for(var j in allFeeds){
+            for( var j = 0; j < allFeeds.length; j++){
                 expect(allFeeds[j].name).toBeDefined();
                 expect(allFeeds[j].name).not.toBe('');
             }
@@ -64,10 +64,10 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-         //Checks whether menu is there in the body or not
-         it('is hidden by default', function() {
+         //Checks whether menu-hidden is there in the body or not
+        it('is hidden by default', function() {
             expect(menu).toEqual(true);
-         });
+        });
 
          /* A test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -75,13 +75,13 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           // Checks the visibility of the menu when the menu icon is clicked
-          it('changes visibility when menu icon is clicked', function() {
+        it('changes visibility when menu icon is clicked', function() {
             var icon = $('.menu-icon-link');
             icon.click();
             expect($('body').hasClass('menu-hidden')).toEqual(false);
             icon.click();
             expect($('body').hasClass('menu-hidden')).toEqual(true);
-          });
+        });
     });
 
     /* A new test suite named "Initial Entries" */
@@ -93,6 +93,7 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
+        // beforeEach will wait for async call to finish
         beforeEach(function(done) {
             loadFeed(0, function() {
                 done();
@@ -105,27 +106,37 @@ $(function() {
             done();
         });
     });
-    /* A new test suite named "New Feed Selection" */
+    /* A new test suite named "New Feed Selection"*/
     describe('New Feed Selection', function() {
-        var getCurFeed;
-        var getNewFeed;
-    
+        var feedFirst;
+        var feedSecond;
         /* A test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+         * loadFeed() is asynchronous.
          */
-         beforeEach(function(done) {
-            getCurFeed = $('.feed').html();
-            loadFeed(1, function() {
-                done();
-            });
-         });
-         //Comapres new feed with already existing ones.
-         it('changed content get displayed', function(done) {
-            getNewFeed = $('.feed').html();
-            expect(getCurFeed).not.toBe(getNewFeed);
-            done();
+
+        //beforeEach to wait for async calls to finish
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                feedFirst = $('.feed').html();
+                loadFeed(1, function() {
+                    done();
+                });
+            });        
          });
 
-     });
+        //afterEach to reload first entry
+        afterEach(function() {
+            loadFeed(0);
+        });
+
+        //compares feedFirst with feedSecond 
+        //to detrmine that the entry has changed
+        it('displays changed content', function() {
+            feedSecond = $('.feed').html();
+            expect(feedFirst).not.toEqual(feedSecond);
+        }); 
+    });     
+
+
 }());
