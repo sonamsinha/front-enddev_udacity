@@ -1,20 +1,21 @@
-<strong>Udacity Neighborhood Map: Project 5</strong><br/>
+## Neighborhood Map
 
-Description<br/>
-This project uses Google Maps API to display the Chicago area.<br/>
-The markers display restaurants in Chicago Downtown area. <br/>
-<br/>
-<strong>This project include following functionality:</strong> <br/> 
-	An interactive search bar to filter restaurants results using knockout.js, <br/>
-	Flickr images are displayed in the info window of the marker when marker is clicked, <br/>
-	A reset map button. <br/>
+### Description
+*This project uses Google Maps API to display the Chicago area.
+*The markers display restaurants in Chicago Downtown area.
+
+### This project include following functionality:
+*An interactive search bar to filter restaurants results using knockout.js.
+*Flickr images are displayed in the info window of the marker when marker is clicked.
+*A reset map button.
 	
-<strong>How to run the application</strong><br/>
-Download the project folder(frontend-nanodegree-neighborhood-map) and open the index.html in the browser.
+### How to run the application
+* Download the project folder(Neighborhood_Map)
+* Open the index.html in the browser.
 	
-<strong>I have taken help from following resources:</strong><br/>
-http://knockoutjs.com/documentation/introduction.html<br/>
-http://api.jquery.com/<br/>
-http://www.w3schools.com/
-http://webdesign.tutsplus.com/tutorials/getting-creative-with-the-google-maps-api--webdesign-13380
-https://www.flickr.com/services/api/
+### Resources:
+*http://knockoutjs.com/documentation/introduction.html
+*http://api.jquery.com/
+*http://www.w3schools.com/
+*http://webdesign.tutsplus.com/tutorials/getting-creative-with-the-google-maps-api--webdesign-13380
+*https://www.flickr.com/services/api/
