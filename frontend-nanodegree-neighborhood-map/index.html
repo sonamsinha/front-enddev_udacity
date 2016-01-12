@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="css/mapStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/library/knockout-3.3.0.js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
+    <script src="js/map.js"></script>
     <script async defer src="http://maps.google.com/maps/api/js"></script>
 </head>
 <body>
   <div id="map-canvas"></div>
+  <img src= "images/banner.png" alt = "Banner">
   <div id="search">
     <button class="hamburger">&#9776;</button>
   </div>
@@ -20,7 +21,7 @@
     <div id = "search-box">
       <div id = "search-nav">
         <form id="search-form">
-          <input id ="searchInput"  class= "form-control" width= "170" placeholder = "Search for restaurants..." type="search" data-bind = "textInput: query, valueUpdate: 'keydown'" autocomplete="off" autofocus/>
+          <input id ="searchInput"  class= "textbox-control" width= "170" placeholder = "Search for restaurants..." type="search" data-bind = "textInput: query, valueUpdate: 'keydown'" autocomplete="off" autofocus/>
         </form>
         <div id = "scrollList">
           <ul data-bind = "template: {name : 'pointer', foreach: markers}">
@@ -42,7 +43,7 @@
   <div class = "reset">
     <button data-bind="click: resetMap" id="resetMap">Reset Map Zoom</button>
   </div>
-  <script type="text/javascript" src="js/library/hamburger.js"></script>
+  <script async src="js/library/hamburger.js"></script>
 </body>
 
 </html>
