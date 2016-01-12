@@ -1,2 +1,2 @@
-# front-enddev_udacity
-Udacity projects
+# Frontend Web Development Nanodegree 
+### This repository includes all the Udacity projects.
