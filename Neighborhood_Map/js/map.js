@@ -101,6 +101,26 @@ var infowindow = null;
 
 var zoomLevel;
 
+var map;
+var mapOptions;
+
+function initMap(){
+	var start_marker = new google.maps.LatLng(markers[0]['lat'], markers[0]['lng']);
+
+		mapOptions = {
+		center: start_marker,
+		streetViewControl: false,
+		panControl: false,
+		maxZoom: 17,
+		zoom: 13,
+		zoomControl: true,
+		zoomControlOptions: {
+			style:google.maps.ZoomControlStyle.SMALL
+		}
+	};
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+}
+
 jQuery(function(){
 	// Ajax call being made to flickr
 	$.ajax({
@@ -139,23 +159,11 @@ jQuery(function(){
 		mapcode();
 	}
 
-
-	var map;
-	var mapOptions;
 	//Initialize the map and its contents
+
 	function mapcode(){
 		var start_marker = new google.maps.LatLng(markers[0]['lat'], markers[0]['lng']);
-		mapOptions = {
-			center: start_marker,
-			streetViewControl: false,
-			panControl: false,
-			maxZoom: 17,
-			zoom: 13,
-			zoomControl: true,
-			zoomControlOptions: {
-				style:google.maps.ZoomControlStyle.SMALL
-			}
-		};
+
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 		zoomLevel = map.getZoom();
@@ -185,7 +193,6 @@ jQuery(function(){
 			//Click marker to view infoWindow
             //zoom in and center location on click
 			google.maps.event.addListener(marker, 'click', function(){
-				console.log(" here ");
 				infowindow.close();
 				infowindow.setContent(contentString);
 				infowindow.open(map, marker);
@@ -217,6 +224,7 @@ jQuery(function(){
 		            map.setZoom(16);
 		            map.setCenter(marker.getPosition());
 		            infowindow.open(map, marker);
+		            $( ".menu" ).slideToggle( "slow");
 		            resetAnimations(markers);
 		            setAnimation(marker);
 		          };
@@ -259,7 +267,6 @@ jQuery(function(){
 	    var self = this;
 	    var search = self.query().toLowerCase();
 	    return ko.utils.arrayFilter(markers, function(pointer) {
-	    	console.log(" Ha Ha Ha "+pointer.id);
 	    	if (pointer.title.toLowerCase().indexOf(search) >= 0) {
 	            pointer.check = true;
 	            return pointer.visible(true);
@@ -270,16 +277,12 @@ jQuery(function(){
 	        }
 	    });
 	}, viewModel);
-	ko.applyBindings(viewModel);
-
-
-	//show $ hide markers in sync with nav
-	$("#searchInput").keyup(function() {
-		var value = $(this).val();
-		if(!value){
+	viewModel.query.subscribe(function(value) {
+		if(!value) {
 			settingMap(value);
 		}
 	});
+	ko.applyBindings(viewModel);
 
 	function setAnimation(marker){
 		if (marker.getAnimation() != null) {
