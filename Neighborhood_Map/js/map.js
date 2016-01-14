@@ -284,11 +284,36 @@ jQuery(function(){
 	});
 	ko.applyBindings(viewModel);
 
-	function setAnimation(marker){
+	/*function setAnimation(marker){
 		if (marker.getAnimation() != null) {
 			marker.setAnimation(null);
 		} else {
 			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	}*/
+
+	/*var curMarker = null;
+	function setAnimation(marker) {
+		if(curMarker) {
+			curMarker.setAnimation(null);
+			curMarker = marker;
+		}
+		else {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	}*/
+
+	var curMarker = null;
+	function setAnimation(marker) {
+		if(curMarker) {
+			curMarker.setAnimation(null);
+		}
+		if(curMarker != marker) {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+			curMarker = marker;
+		}
+		else{
+			curMarker = null;
 		}
 	}
 
