@@ -8,9 +8,9 @@
 
 ### Tests
 ##### RSS Feeds:
-  1. All feeds are defined in allFeeds
-  2. All feeds URL are defined and contains content
-  3. All feeds name are defined and contain content
+  1. All feeds are defined in allFeeds.
+  2. All feeds URL are defined and contains the content.
+  3. All feeds name are defined and contains the content.
 
 ##### Menu:
   1. Menu is hidden on page load
