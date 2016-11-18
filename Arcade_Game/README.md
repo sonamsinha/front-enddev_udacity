@@ -1,4 +1,4 @@
-frontend-nanodegree-arcade-game
+Arcade-game
 ===============================
 Steps to open and play the game:-
   1. Clone the repository frontend-nanodegree-arcade-game-master.
