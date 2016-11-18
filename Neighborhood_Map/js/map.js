@@ -111,7 +111,6 @@ function initMap(){
 		center: start_marker,
 		streetViewControl: false,
 		panControl: false,
-		maxZoom: 17,
 		zoom: 13,
 		zoomControl: true,
 		zoomControlOptions: {
@@ -184,7 +183,7 @@ jQuery(function(){
 				id: 'mk_' + m.rank,
 				letter : m.index,
 				map:map,
-				title:m.name,
+				title:m.title,
 				zIndex:999
 			});
 
@@ -201,7 +200,7 @@ jQuery(function(){
 					map.setZoom(18);
 				}
 				if(windowSize > 1080) {
-					map.setZoom(16);
+					map.setZoom(13);
 				}
 				setAnimation(marker);
  				map.setCenter(marker.getPosition());
@@ -313,7 +312,7 @@ jQuery(function(){
 		    	markers[i].holdMarker.setMap(map);
 		    	var latLng = new google.maps.LatLng(markers[i].lat, markers[i].lng);
 		    	map.panTo(latLng);
-		    	map.setZoom(17);
+		    	map.setZoom(13);
 		    } else {
 		    	markers[i].holdMarker.setMap(null);
 		    }
